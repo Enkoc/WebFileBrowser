@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+
+    <!-- Using bootstrap styles just for design -->
+    <link href="Content/bootstrap.min.css" rel="stylesheet" media="screen">
+
+</head>
+<body ng-app="WFBApp">
+
+
+    <div ng-controller="FileBrowserController" class="container" >
+        <div class="well sidebar-nav">
+            <div  ng-show="showDisks">
+                <h3>Select Disk</h3>
+        
+                <div ng-repeat="path in diskNames">           
+                    <a href="" ng-click="newPath(path)" > {{path}} </a>    
+                </div>
+            </div>
+
+            <div ng-hide="showDisks">
+                <div style="width:50%">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <td>Less 10Mb</td>
+                                <td>10Mb-50Mb</td>
+                                <td>More 100Mb</td>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>{{folder.LessThan10MbFiles}}</td>
+                            <td>{{folder.LessThan10MoreThan50MbFiles}}</td>
+                            <td>{{folder.MoreThan100MbFiles}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <p><strong>Current path:</strong> {{folder.Path}}\</p>
+
+                <div class="well sidebar-nav ">
+                    <div>
+                        <a href="" ng-click="back()" ng-show="backShow()">..</a>
+                    </div>
+                    <div ng-repeat="file in folder.Files">
+                        <a href="" ng-click="newPath(file)">{{shortName(file)}}</a>
+                    </div>
+                </div>
+
+            </div>
+         </div>
+    </div>
+
+    <script src="scripts/angular.js"></script> 
+    <script src="scripts/Main/Page.js"></script> 
+    
+</body>
+</html>
